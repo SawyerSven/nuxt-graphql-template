@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "dev:sandbox":"cross-env NODE_ENV=development nuxt",
+    "build": "cross-env API_ENV=production nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -15,6 +16,7 @@
     "@nuxtjs/apollo": "^4.0.1-rc.3",
     "@nuxtjs/dotenv": "^1.4.1",
     "apollo-cache-inmemory": "^1.6.6",
+    "cross-env": "^7.0.2",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "nuxt": "^2.14.0",
