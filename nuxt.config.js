@@ -1,8 +1,8 @@
 
 export default {
   // 关闭每次run dev的时候的选择
-  telemetry:false,
-  srcDir:'src/',
+  telemetry: false,
+  srcDir: 'src/',
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -58,12 +58,14 @@ export default {
   */
   modules: [
     'nuxt-ssr-cache',
-    // Doc: https://github.com/nuxt/content
+    '@nuxtjs/apollo',
+    '@nuxtjs/proxy'
   ],
 
-  styleResources:{
-    less:['./src/common/less/index.less']
+  styleResources: {
+    less: ['./src/common/less/index.less']
   },
+
   cache: {
     // if you're serving multiple host names (with differing
     // results) from the same server, set this option to true.
@@ -81,7 +83,7 @@ export default {
       /^\/page3\/\d+$/,
 
       // to cache only root route, use a regular expression
-      /^\/$/,
+      /^\/$/
     ],
 
     key (route, context) {
@@ -99,8 +101,17 @@ export default {
       max: 100,
 
       // number of seconds to store this page in cache
-      ttl: 60,
-    },
+      ttl: 60
+    }
+  },
+  // proxy: {
+  //   '/graphql': 'http://gca-pid-dev.adidas.com.cn'
+  // },
+  apollo: {
+    clientConfigs: {
+      default: '~/graphql/apollo/index.js',
+      detailClient: '~/graphql/apollo/detail.js'
+    }
   },
   /*
   ** Content module configuration
