@@ -12,8 +12,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxt/content": "^1.5.0",
-    "nuxt": "^2.14.0"
+    "@nuxtjs/dotenv": "^1.4.1",
+    "nuxt": "^2.14.0",
+    "nuxt-ssr-cache": "^1.5.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
@@ -25,6 +26,8 @@
     "eslint": "^7.5.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "jest": "^26.1.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.1",
     "vue-jest": "^3.0.4"
   }
 }
