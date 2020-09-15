@@ -50,6 +50,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources',
     '@nuxtjs/dotenv'
   ],
   /*
@@ -59,6 +60,10 @@ export default {
     'nuxt-ssr-cache',
     // Doc: https://github.com/nuxt/content
   ],
+
+  styleResources:{
+    less:['./src/common/less/index.less']
+  },
   cache: {
     // if you're serving multiple host names (with differing
     // results) from the same server, set this option to true.
