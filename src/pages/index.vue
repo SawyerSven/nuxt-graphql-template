@@ -23,25 +23,33 @@
           GitHub
         </a>
       </div>
+      <ul>
+        <li v-for="item in articles" :key="item.article_id">
+          {{ item.article_id }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { GetLaunches } from '~/graphql/ql/foo.gql'
+import { queryArticles } from '~/graphql/ql/foo.gql'
 export default {
+  name: 'Index',
+  async asyncData (ctx) {
+    const res = await ctx.app.$apollo.query({
+      query: queryArticles,
+      fetchPolicy: 'no-cache'
+    })
+    return {
+      articles: res
+    }
+  },
   created () {
-    this.getList()
   },
   methods: {
-    getList () {
-      this.$apollo.query({
-        query: GetLaunches
-      }).then((res) => {
-        console.log(res)
-      }).catch((e) => {
-        console.log(e)
-      })
+    getData () {
+
     }
   }
 }

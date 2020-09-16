@@ -1,69 +1,72 @@
-
 export default {
   // 关闭每次run dev的时候的选择
   telemetry: false,
-  srcDir: 'src/',
+  srcDir: "src/",
   /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
-  mode: 'universal',
+   ** Nuxt rendering mode
+   ** See https://nuxtjs.org/api/configuration-mode
+   */
+  mode: "universal",
   /*
-  ** Nuxt target
-  ** See https://nuxtjs.org/api/configuration-target
-  */
-  target: 'server',
+   ** Nuxt target
+   ** See https://nuxtjs.org/api/configuration-target
+   */
+  target: "server",
   /*
-  ** Headers of the page
-  ** See https://nuxtjs.org/api/configuration-head
-  */
+   ** Headers of the page
+   ** See https://nuxtjs.org/api/configuration-head
+   */
   head: {
     title: "布雷博",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content: process.env.npm_package_description || ""
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   /*
-  ** Global CSS
-  */
-  css: [
-  ],
+   ** Global CSS
+   */
+  css: [],
   /*
-  ** Plugins to load before mounting the App
-  ** https://nuxtjs.org/guide/plugins
-  */
+   ** Plugins to load before mounting the App
+   ** https://nuxtjs.org/guide/plugins
+   */
   plugins: [
+    '~/plugins/vue-inject.js', // 注入vue实例的全局属性
+    '~/plugins/ctx-inject.js', // 注入ctx-asyncData使用的全局属性
+    '~/plugins/combined-inject.js' // 同时注入ctx-asyncData和Vue实例的全局属性
   ],
   /*
-  ** Auto import components
-  ** See https://nuxtjs.org/api/configuration-components
-  */
+   ** Auto import components
+   ** See https://nuxtjs.org/api/configuration-components
+   */
   components: true,
   /*
-  ** Nuxt.js dev-modules
-  */
+   ** Nuxt.js dev-modules
+   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-    '@nuxtjs/style-resources',
-    '@nuxtjs/dotenv'
+    "@nuxtjs/eslint-module",
+    "@nuxtjs/style-resources",
+    "@nuxtjs/dotenv"
   ],
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
-    'nuxt-ssr-cache',
-    '@nuxtjs/apollo',
-    '@nuxtjs/proxy'
+    "nuxt-ssr-cache",
+    // '@nuxtjs/apollo',
+    "@nuxtjs/proxy"
   ],
 
   styleResources: {
-    less: ['./src/common/less/index.less']
+    less: ["./src/common/less/index.less"]
   },
 
   cache: {
@@ -77,7 +80,7 @@ export default {
     pages: [
       // these are prefixes of pages that need to be cached
       // if you want to cache all pages, just include '/'
-      '/',
+      "/",
 
       // you can also pass a regular expression to test a path
       /^\/page3\/\d+$/,
@@ -93,7 +96,7 @@ export default {
     },
 
     store: {
-      type: 'memory',
+      type: "memory",
 
       // maximum number of pages to store in memory
       // if limit is reached, least recently used page
@@ -107,29 +110,37 @@ export default {
   // proxy: {
   //   '/graphql': 'http://gca-pid-dev.adidas.com.cn'
   // },
-  apollo: {
-    clientConfigs: {
-      default: '~/graphql/apollo/index.js',
-      detailClient: '~/graphql/apollo/detail.js'
-    },
-    defaultOptions: {
-      // See 'apollo' definition
-      // For example: default query options
-      $query: {
-        loadingKey: 'loading',
-        fetchPolicy: 'cache-and-network'
-      }
-    }
-  },
+  // apollo: {
+  //   clientConfigs: {
+  //     default: '~/graphql/apollo/index.js',
+  //     detailClient: '~/graphql/apollo/detail.js'
+  //   },
+  //   defaultOptions: {
+  //     // See 'apollo' definition
+  //     // For example: default query options
+  //     $query: {
+  //       loadingKey: 'loading',
+  //       fetchPolicy: 'cache-and-network'
+  //     }
+  //   }
+  // },
   /*
-  ** Content module configuration
-  ** See https://content.nuxtjs.org/configuration
-  */
+   ** Content module configuration
+   ** See https://content.nuxtjs.org/configuration
+   */
   content: {},
   /*
-  ** Build configuration
-  ** See https://nuxtjs.org/api/configuration-build/
-  */
+   ** Build configuration
+   ** See https://nuxtjs.org/api/configuration-build/
+   */
   build: {
+    vendor: ['lodash', 'omit-deep-lodash'],
+    extend (config, { isClient }) {
+      config.module.rules.push({
+        enforce: 'pre',
+        test: /(\.graphql)|(\.gql)$/,
+        use: ['graphql-tag/loader']
+      })
+    }
   }
 }
