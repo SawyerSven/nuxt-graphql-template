@@ -4,6 +4,39 @@
   </div>
 </template>
 
+<script>
+import { mapMutations } from 'vuex'
+import { debounce } from 'lodash'
+export default {
+  created () {
+    if (!process.server) {
+      // eslint-disable-next-line
+      this.refreshWidthAndHeight()
+      this.setUa(navigator.userAgent)
+    }
+  },
+  methods: {
+    ...mapMutations({
+      setWidth: 'config/setWidth',
+      setHeight: 'config/setHeight',
+      setUa: 'config/setUa'
+    }),
+    refreshWidthAndHeight () {
+      const width = document.documentElement.clientWidth
+      // eslint-disable-next-line
+      const height = document.documentElement.clientHeight
+      this.setWidth(width)
+      this.setHeight(height)
+    }
+  },
+  mounted () {
+    window.addEventListener('resize', debounce((e) => {
+      this.refreshWidthAndHeight()
+    }, 150))
+  }
+}
+</script>
+
 <style>
 html {
   font-family:
