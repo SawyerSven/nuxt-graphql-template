@@ -1,0 +1,9 @@
+query GetLaunches {
+  launches {
+    id
+    mission {
+      name
+      age
+    }
+  }
+}

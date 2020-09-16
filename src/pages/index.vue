@@ -28,7 +28,23 @@
 </template>
 
 <script>
-export default {}
+import { GetLaunches } from '~/graphql/ql/foo.gql'
+export default {
+  created () {
+    this.getList()
+  },
+  methods: {
+    getList () {
+      this.$apollo.query({
+        query: GetLaunches
+      }).then((res) => {
+        console.log(res)
+      }).catch((e) => {
+        console.log(e)
+      })
+    }
+  }
+}
 </script>
 
 <style lang="less">
@@ -42,16 +58,8 @@ export default {}
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

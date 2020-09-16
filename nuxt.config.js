@@ -18,7 +18,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: "布雷博",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -111,6 +111,14 @@ export default {
     clientConfigs: {
       default: '~/graphql/apollo/index.js',
       detailClient: '~/graphql/apollo/detail.js'
+    },
+    defaultOptions: {
+      // See 'apollo' definition
+      // For example: default query options
+      $query: {
+        loadingKey: 'loading',
+        fetchPolicy: 'cache-and-network'
+      }
     }
   },
   /*

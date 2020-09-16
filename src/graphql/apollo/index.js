@@ -1,5 +1,5 @@
 export default ctx => ({
-  httpEndpoint: "http://localhost:4444",
+  httpEndpoint: "http://localhost:4000",
 
   httpLinkOptions: {
     credentials: "same-origin"
