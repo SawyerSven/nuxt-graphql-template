@@ -51,11 +51,9 @@ export default {
   //   }
   // },
   created () {
+    console.log('18:00')
   },
   methods: {
-    getData () {
-
-    }
   }
 }
 </script>
