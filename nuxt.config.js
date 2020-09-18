@@ -69,6 +69,9 @@ export default {
     less: ["./src/common/less/index.less"]
   },
 
+  serverMiddleware: [
+    '~/middleware/health.js'
+  ],
   cache: {
     // if you're serving multiple host names (with differing
     // results) from the same server, set this option to true.
