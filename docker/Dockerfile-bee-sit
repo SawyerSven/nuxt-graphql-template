@@ -27,6 +27,8 @@ RUN yarn install
 # && yarn --prod
 EXPOSE 8080
 
+RUN ls
+
 RUN chown -R vmuser. /opt
 USER vmuser
 
