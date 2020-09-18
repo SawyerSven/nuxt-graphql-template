@@ -22,6 +22,9 @@
         >
           GitHub
         </a>
+        <nuxt-link to="/home">
+          123
+        </nuxt-link>
       </div>
       <!-- <ul>
         <li v-for="item in articles" :key="item.article_id">
