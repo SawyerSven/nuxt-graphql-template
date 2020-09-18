@@ -19,7 +19,7 @@ pipeline {
     LOCAL_DIR= "$WORKSPACE/	brembo-frontend"  //生成包的位置，其中$WORKSPACE不需要修改，ecs-ofa-service-impl/target按照实际的应用目录填写
     PACKAGE_NAME = "brembo-frontend-web"  //需要发布的包名，按实际修改，dubbo包名写.tar.gz包，tomcat包名写war包，springboot包名写jar包
     PROJECT_NAME = "brembo-cn" //项目名，按实际修改
-    APP_NAME = "webservice"  //应用名，按实际修改，如有多个，在括号内添加，以空格间隔(例如"ofa-service-a ofa-service-b ofa-service-c")
+    APP_NAME = "frontend"  //应用名，按实际修改，如有多个，在括号内添加，以空格间隔(例如"ofa-service-a ofa-service-b ofa-service-c")
     ENV_NAME = "sit"  //发布的环境，根据自己有几个环境进行删减，但是环境名就这四个
     HARBOR_ADDR = "ic-harbor.baozun.com"  //Harbor地址，无需修改
     DOCKER_NAME = "./docker/Dockerfile-bee-sit"  //Dockerfile文件位置，如有多个，在括号内添加，以空格间隔，顺序按照APP_NAME一样(例如"ecs-ofa-service-impl-a/docker/Dockerfile-ecs ecs-ofa-service-impl-a/docker/Dockerfile-ecs ecs-ofa-service-impl-c/docker/Dockerfile-ecs")
