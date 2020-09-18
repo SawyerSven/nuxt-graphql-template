@@ -12,7 +12,7 @@ import { find, get } from "lodash"
 // import store from '@/store'
 
 // import introspectionQueryResultData from '../fragmentTypes.json'
-import loading from "./middleWare/loading"
+import loading from "./middleware/loading"
 
 const httpLink = new HttpLink({
   uri: `https://api.liaoliaojun.com:3000/graphql`,
