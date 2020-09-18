@@ -10,8 +10,8 @@ pipeline {
      }
 
   environment {
-    USER_EMAIL = "ya.wang@baozun.com"  //发送邮件的地址（一般为项目owner，按实际修改）
-    USER = "ya.wang"  //发送邮件的邮箱前缀（一般为项目owner，按实际修改）
+    USER_EMAIL = "siyuan.sun1@baozun.com"  //发送邮件的地址（一般为项目owner，按实际修改）
+    USER = "siyuan.sun"  //发送邮件的邮箱前缀（一般为项目owner，按实际修改）
     SFTP_SECRET_ACCESS_KEY = credentials('jenkins-sftp-secret-access-key')  //SFTP的秘钥（发包使用，无需修改）
     SFTP_SERVER = "10.101.6.87"  //SFTP的地址（发包使用，无需修改）
     VALIDATE_URL = "http://bee-backend.baozun.com/ci_validate/"  //SFTP的地址（发包使用，无需修改）
@@ -80,7 +80,7 @@ pipeline {
           yarn config set registry ${private_npm}
           yarn config set @baozun:registry ${baozun_npm}
           export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-          yarn
+          yarn install
           yarn build
         """
       }
