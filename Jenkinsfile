@@ -18,7 +18,7 @@ pipeline {
     REMOTE_DIR = "/upload"  //SFTP的目录（发包使用，无需修改）
     LOCAL_DIR= "$WORKSPACE/	brembo-frontend"  //生成包的位置，其中$WORKSPACE不需要修改，ecs-ofa-service-impl/target按照实际的应用目录填写
     PACKAGE_NAME = "brembo-frontend-web"  //需要发布的包名，按实际修改，dubbo包名写.tar.gz包，tomcat包名写war包，springboot包名写jar包
-    PROJECT_NAME = "brembo-cn" //项目名，按实际修改
+    PROJECT_NAME = "brembo" //项目名，按实际修改
     APP_NAME = "frontend"  //应用名，按实际修改，如有多个，在括号内添加，以空格间隔(例如"ofa-service-a ofa-service-b ofa-service-c")
     ENV_NAME = "sit"  //发布的环境，根据自己有几个环境进行删减，但是环境名就这四个
     HARBOR_ADDR = "ic-harbor.baozun.com"  //Harbor地址，无需修改
