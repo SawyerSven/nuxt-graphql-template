@@ -28,6 +28,8 @@ RUN yarn install
 # && cd /opt/project/resource/sites/88000204/latest/ \
 # && yarn --prod
 EXPOSE 8080
+EXPOSE 80
+EXPOSE 443
 
 RUN ls
 
