@@ -1,6 +1,9 @@
 export default {
   // 关闭每次run dev的时候的选择
   telemetry: false,
+  server: {
+    port: 8080
+  },
   srcDir: "src/",
   /*
    ** Nuxt rendering mode
@@ -54,7 +57,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     "@nuxtjs/eslint-module",
     "@nuxtjs/style-resources",
-    "@nuxtjs/dotenv"
+    "@nuxtjs/dotenv",
   ],
   /*
    ** Nuxt.js modules

@@ -6,7 +6,7 @@ import {
   InMemoryCache
 } from "apollo-cache-inmemory"
 
-import omitDeep from "omit-deep-lodash"
+// import omitDeep from "omit-deep-lodash"
 import { find, get } from "lodash"
 // import router from '@/router'
 // import store from '@/store'
@@ -89,10 +89,11 @@ const handleUserError = (response) => {
   }
 }
 
-const omitTypename = response => omitDeep(response, "__typename")
+// const omitTypename = response => omitDeep(response, "__typename")
 
 const formatResponse = (graphql, response) => {
-  const data = omitTypename(response).data
+  // const data = omitTypename(response).data
+  const data = response
   if (data === null) {
     throw new Error("服务器异常")
   }
