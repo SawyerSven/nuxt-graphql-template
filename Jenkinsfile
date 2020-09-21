@@ -86,7 +86,7 @@ pipeline {
       }
     }
 		stage('上传镜像') {
-      when { anyOf{branch 'dev';branch 'master'; branch 'release'} }
+      when { anyOf{branch 'develop';branch 'master'; branch 'release'} }
       steps {
         timeout(time: 20, unit: 'MINUTES') {
           sh '''
