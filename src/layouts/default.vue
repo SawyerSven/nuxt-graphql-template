@@ -5,49 +5,45 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import { debounce } from 'lodash'
+import { mapMutations } from "vuex"
+import { debounce } from "lodash"
 export default {
   created () {
     if (!process.server) {
       // eslint-disable-next-line
-      this.refreshWidthAndHeight()
+      this.refreshWidthAndHeight();
       this.setUa(navigator.userAgent)
     }
   },
   methods: {
     ...mapMutations({
-      setWidth: 'config/setWidth',
-      setHeight: 'config/setHeight',
-      setUa: 'config/setUa'
+      setWidth: "config/setWidth",
+      setHeight: "config/setHeight",
+      setUa: "config/setUa"
     }),
     refreshWidthAndHeight () {
       const width = document.documentElement.clientWidth
       // eslint-disable-next-line
-      const height = document.documentElement.clientHeight
+      const height = document.documentElement.clientHeight;
       this.setWidth(width)
       this.setHeight(height)
     }
   },
   mounted () {
-    window.addEventListener('resize', debounce((e) => {
-      this.refreshWidthAndHeight()
-    }, 150))
+    window.addEventListener(
+      "resize",
+      debounce((e) => {
+        this.refreshWidthAndHeight()
+      }, 150)
+    )
   }
 }
 </script>
 
 <style>
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
