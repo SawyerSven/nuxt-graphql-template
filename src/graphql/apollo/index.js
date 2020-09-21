@@ -8,14 +8,11 @@ import {
 
 import omitDeep from "omit-deep-lodash"
 import { find, get } from "lodash"
-// import router from '@/router'
-// import store from '@/store'
-
-// import introspectionQueryResultData from '../fragmentTypes.json'
+import env from '@/config/env'
 import loading from "./middleware/loading"
 
 const httpLink = new HttpLink({
-  uri: `https://api.liaoliaojun.com:3000/graphql`,
+  uri: env.API_URL,
   fetch
 })
 

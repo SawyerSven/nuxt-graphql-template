@@ -22,9 +22,7 @@
         >
           GitHub
         </a>
-        <nuxt-link to="/home">
-          123
-        </nuxt-link>
+        <nuxt-link to="/home" />
       </div>
       <!-- <ul>
         <li v-for="item in articles" :key="item.article_id">
@@ -36,25 +34,24 @@
 </template>
 
 <script>
-// import { queryArticles } from '~/graphql/ql/foo.gql'
+import { queryArticles } from '~/graphql/ql/foo.gql'
 export default {
   name: 'Index',
-  // async asyncData (ctx) {
-  //   let res
-  //   try {
-  //     res = await ctx.app.$apollo.query({
-  //       query: queryArticles,
-  //       fetchPolicy: 'no-cache'
-  //     })
-  //   } catch (e) {
-  //     res = []
-  //   }
-  //   return {
-  //     articles: res
-  //   }
-  // },
+  async asyncData (ctx) {
+    let res
+    try {
+      res = await ctx.app.$apollo.query({
+        query: queryArticles,
+        fetchPolicy: 'no-cache'
+      })
+    } catch (e) {
+      res = []
+    }
+    return {
+      articles: res
+    }
+  },
   created () {
-    console.log('18:00')
   },
   methods: {
   }

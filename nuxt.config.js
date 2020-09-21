@@ -4,12 +4,10 @@ export default {
   server: {
     port: 8081
   },
+  env: {
+    API_ENV: process.env.NODE_ENV
+  },
   srcDir: "src/",
-  /*
-   ** Nuxt rendering mode
-   ** See https://nuxtjs.org/api/configuration-mode
-   */
-  mode: "universal",
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -41,9 +39,9 @@ export default {
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [
-    '~/plugins/vue-inject.js', // 注入vue实例的全局属性
-    '~/plugins/ctx-inject.js', // 注入ctx-asyncData使用的全局属性
-    '~/plugins/combined-inject.js' // 同时注入ctx-asyncData和Vue实例的全局属性
+    "~/plugins/vue-inject.js", // 注入vue实例的全局属性
+    "~/plugins/ctx-inject.js", // 注入ctx-asyncData使用的全局属性
+    "~/plugins/combined-inject.js" // 同时注入ctx-asyncData和Vue实例的全局属性
   ],
   /*
    ** Auto import components
@@ -56,23 +54,18 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     "@nuxtjs/eslint-module",
-    "@nuxtjs/style-resources",
-    "@nuxtjs/dotenv"
+    "@nuxtjs/style-resources"
   ],
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    "nuxt-ssr-cache"
-  ],
+  modules: ["nuxt-ssr-cache"],
 
   styleResources: {
     less: ["./src/common/less/index.less"]
   },
 
-  serverMiddleware: [
-    '~/middleware/health.js'
-  ],
+  serverMiddleware: ["~/middleware/health.js"],
   cache: {
     // if you're serving multiple host names (with differing
     // results) from the same server, set this option to true.
@@ -138,12 +131,12 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {
-    vendor: ['lodash', 'omit-deep-lodash'],
+    vendor: ["lodash", "omit-deep-lodash"],
     extend (config, { isClient }) {
       config.module.rules.push({
-        enforce: 'pre',
+        enforce: "pre",
         test: /(\.graphql)|(\.gql)$/,
-        use: ['graphql-tag/loader']
+        use: ["graphql-tag/loader"]
       })
     }
   }

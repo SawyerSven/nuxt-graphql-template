@@ -1,6 +1,17 @@
-import prod from './env.prod'
-import dev from './env.dev'
+let API_URL = ""
 
-const env = process.env.NODE_ENV === 'development' ? dev : prod
+switch (process.env.API_ENV) {
+  case "sandbox":
+    API_URL = "https://api.liaoliaojun.com:3000/graphql"
+    break
+  case "uat":
+    API_URL = "http://brembo-backend-uat.cloud.bz/graphiql"
+    break
+  default:
+    API_URL = "http://brembo-backend-uat.cloud.bz/graphiql"
+    break
+}
 
-export default env
+export default {
+  API_URL
+}
