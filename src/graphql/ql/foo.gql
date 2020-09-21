@@ -1,13 +1,3 @@
-query GetLaunches {
-  launches {
-    id
-    mission {
-      name
-      age
-    }
-  }
-}
-
 query queryArticles {
   articles {
     # 文章id
@@ -26,5 +16,13 @@ query queryArticles {
     # article_like_ips
     # 背景图地址(/保存至本服务器)
     bg_path
+  }
+}
+
+query queryShop{
+  shop{
+    name
+    domain
+    logo
   }
 }

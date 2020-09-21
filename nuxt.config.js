@@ -5,7 +5,7 @@ export default {
     port: 8081
   },
   env: {
-    API_ENV: process.env.NODE_ENV
+    API_ENV: process.env.API_ENV
   },
   srcDir: "src/",
   /*
@@ -59,7 +59,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["nuxt-ssr-cache"],
+  modules: ["nuxt-ssr-cache", "@nuxtjs/proxy"],
 
   styleResources: {
     less: ["./src/common/less/index.less"]
@@ -85,7 +85,6 @@ export default {
       // to cache only root route, use a regular expression
       /^\/$/
     ],
-
     key (route, context) {
       // custom function to return cache key, when used previous
       // properties (useHostPrefix, pages) are ignored. return
@@ -104,23 +103,9 @@ export default {
       ttl: 60
     }
   },
-  // proxy: {
-  //   '/graphql': 'http://gca-pid-dev.adidas.com.cn'
-  // },
-  // apollo: {
-  //   clientConfigs: {
-  //     default: '~/graphql/apollo/index.js',
-  //     detailClient: '~/graphql/apollo/detail.js'
-  //   },
-  //   defaultOptions: {
-  //     // See 'apollo' definition
-  //     // For example: default query options
-  //     $query: {
-  //       loadingKey: 'loading',
-  //       fetchPolicy: 'cache-and-network'
-  //     }
-  //   }
-  // },
+  proxy: [
+    'http://brembo-backend-uat.cloud.bz/graphql'
+  ],
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
@@ -131,7 +116,6 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {
-    vendor: ["lodash", "omit-deep-lodash"],
     extend (config, { isClient }) {
       config.module.rules.push({
         enforce: "pre",

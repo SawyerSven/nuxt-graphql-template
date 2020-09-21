@@ -8,11 +8,11 @@ import {
 
 import omitDeep from "omit-deep-lodash"
 import { find, get } from "lodash"
-// import env from '@/config/env'
+import env from '@/config/env'
 import loading from "./middleware/loading"
 
 const httpLink = new HttpLink({
-  uri: '/graphql',
+  uri: env.API_URL,
   fetch
 })
 
@@ -24,7 +24,6 @@ const errorLink = onError(({ networkError, response }) => {
   }
 
   let errorMsg = ""
-
   if (response && response.errors && response.errors.length) {
     const error = response.errors[0]
     if (error.extensions) {

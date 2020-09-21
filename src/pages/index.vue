@@ -24,37 +24,53 @@
         </a>
         <nuxt-link to="/home" />
       </div>
-      <!-- <ul>
+      <ul>
         <li v-for="item in articles" :key="item.article_id">
           {{ item.article_id }}
         </li>
-      </ul> -->
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { queryArticles } from '~/graphql/ql/foo.gql'
+import { queryShop } from "~/graphql/ql/foo.gql"
 export default {
-  name: 'Index',
+  name: "Index",
   async asyncData (ctx) {
     let res
     try {
       res = await ctx.app.$apollo.query({
-        query: queryArticles,
-        fetchPolicy: 'no-cache'
+        query: queryShop,
+        fetchPolicy: "no-cache"
       })
+      console.log(res)
     } catch (e) {
+      console.log(e)
       res = []
     }
     return {
       articles: res
     }
   },
-  created () {
-  },
-  methods: {
-  }
+  created () {},
+  // async mounted () {
+  //   let res
+  //   try {
+  //     res = await this.$apollo.query({
+  //       query: queryShop,
+  //       fetchPolicy: "no-cache"
+  //     })
+  //     console.log(res)
+  //   } catch (e) {
+  //     console.log(e)
+  //     res = []
+  //   }
+  //   return {
+  //     articles: res
+  //   }
+  // },
+  methods: {}
 }
 </script>
 
