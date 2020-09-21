@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "nuxt",
     "dev:sandbox": "cross-env API_ENV=sandbox  nuxt",
-    "dev:uat":"cross-env API_ENV=uat nuxt",
-    "dev:prod":"cross-env API_ENV=prod nuxt",
+    "dev:uat": "cross-env API_ENV=uat nuxt",
+    "dev:prod": "cross-env API_ENV=prod nuxt",
     "build": "cross-env NODE_ENV=production API_ENV=prod nuxt build",
     "build:sandbox": "cross-env API_ENV=sandbox  nuxt build",
-    "build:uat":"cross-env API_ENV=uat nuxt build",
+    "build:uat": "cross-env API_ENV=uat nuxt build",
     "start": "nuxt start --port 8081",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -32,11 +32,11 @@
     "lodash": "^4.17.20",
     "nuxt": "^2.14.0",
     "nuxt-ssr-cache": "^1.5.2",
+    "omit-deep-lodash": "^1.1.4",
     "ua-parser-js": "^0.7.22",
     "vue": "^2.6.12",
     "vue-apollo": "^3.0.4",
-    "vuex": "^3.5.1",
-    "omit-deep-lodash": "^1.1.4"
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

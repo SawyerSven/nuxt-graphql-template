@@ -5,10 +5,10 @@ switch (process.env.API_ENV) {
     API_URL = "https://api.liaoliaojun.com:3000/graphql"
     break
   case "uat":
-    API_URL = "http://brembo-backend-uat.cloud.bz/graphiql"
+    API_URL = "https://api.liaoliaojun.com:3000/graphql"
     break
   default:
-    API_URL = "http://brembo-backend-uat.cloud.bz/graphiql"
+    API_URL = "https://api.liaoliaojun.com:3000/graphql"
     break
 }
 
