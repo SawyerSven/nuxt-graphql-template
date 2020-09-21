@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "yarn dev:uat",
     "dev:sandbox": "cross-env API_ENV=sandbox  nuxt",
     "dev:uat": "cross-env API_ENV=uat nuxt",
     "dev:prod": "cross-env API_ENV=prod nuxt",
