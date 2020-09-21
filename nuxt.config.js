@@ -63,9 +63,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    "nuxt-ssr-cache",
-    // '@nuxtjs/apollo',
-    "@nuxtjs/proxy"
+    "nuxt-ssr-cache"
   ],
 
   styleResources: {
