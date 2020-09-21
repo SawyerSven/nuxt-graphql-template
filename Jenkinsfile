@@ -20,7 +20,7 @@ pipeline {
     PACKAGE_NAME = "brembo-frontend-web"  //需要发布的包名，按实际修改，dubbo包名写.tar.gz包，tomcat包名写war包，springboot包名写jar包
     PROJECT_NAME = "brembo" //项目名，按实际修改
     APP_NAME = "frontend"  //应用名，按实际修改，如有多个，在括号内添加，以空格间隔(例如"ofa-service-a ofa-service-b ofa-service-c")
-    ENV_NAME = "sandbox"  //发布的环境，根据自己有几个环境进行删减，但是环境名就这四个
+    ENV_NAME = "uat"  //发布的环境，根据自己有几个环境进行删减，但是环境名就这四个
     HARBOR_ADDR = "ic-harbor.baozun.com"  //Harbor地址，无需修改
     DOCKER_NAME = "./docker/Dockerfile"  //Dockerfile文件位置，如有多个，在括号内添加，以空格间隔，顺序按照APP_NAME一样(例如"ecs-ofa-service-impl-a/docker/Dockerfile-ecs ecs-ofa-service-impl-a/docker/Dockerfile-ecs ecs-ofa-service-impl-c/docker/Dockerfile-ecs")
     JDK_VERSION="jdk1.8" //默认mvn 编译会使用jdk1.8进行编译,如果使用jdk1.7请将此项修改为：jdk1.7
@@ -81,7 +81,7 @@ pipeline {
           yarn config set @baozun:registry ${baozun_npm}
           export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
           yarn install
-          yarn build:sandbox
+          yarn build:uat
         """
       }
     }
