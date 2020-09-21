@@ -81,7 +81,7 @@ pipeline {
           yarn config set @baozun:registry ${baozun_npm}
           export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
           yarn install
-          yarn build:sandbox
+          yarn build
         """
       }
     }
