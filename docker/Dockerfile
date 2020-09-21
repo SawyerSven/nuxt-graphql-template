@@ -1,11 +1,28 @@
-FROM  node:9-alpine
+FROM ic-harbor.baozun.com/ic/alpine-node10:v1.1
+
+ENV HOST 0.0.0.0
+
+ENV NODE_ENV=production
+
 RUN mkdir /opt/project -p
-WORKDIR  /opt/project
-ADD  ./ /opt/project 
-RUN  cd /opt/project/ && npm config set @baozun:registry http://npm.baozun.com:7001
-RUN  cd /opt/project/ && rm -rf node_modules && rm -rf package-lock.json && npm install 
-RUN  cd /opt/project/staff/  &&   rm -rf node_modules && rm -rf package-lock.json && npm install 
-RUN  cd /opt/project/staff/ && npm run publish && npm run alioss
-RUN  cd /opt/project/resource/sites/88000204/latest/ && npm install --only=prod --no-package-lock
+
+WORKDIR /opt/project
+
+ADD  .nuxt /opt/project/.nuxt
+
+ADD package.json /opt/project
+
+ADD yarn.lock /opt/project
+
+RUN yarn config set registry https://registry.npm.taobao.org
+
+RUN yarn install
+
 EXPOSE 8081
 
+RUN ls
+
+RUN chown -R vmuser. /opt
+USER vmuser
+
+CMD ["yarn", "start"]
