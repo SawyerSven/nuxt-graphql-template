@@ -8,11 +8,11 @@ import {
 
 import omitDeep from "omit-deep-lodash"
 import { find, get } from "lodash"
-import env from '@/config/env'
+// import env from '@/config/env'
 import loading from "./middleware/loading"
 
 const httpLink = new HttpLink({
-  uri: env.API_URL,
+  uri: '/graphql',
   fetch
 })
 
