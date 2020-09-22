@@ -1,0 +1,17 @@
+fragment shopBaseFragment on Shop {
+  name
+  domain
+  logo
+  weChat
+  key
+  description
+  category
+  companyName
+}
+
+fragment shopSeoFragment on Shop {
+  seoTitle
+  seoKeywords
+  seoDescription
+  seoEnable
+}

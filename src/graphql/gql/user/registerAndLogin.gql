@@ -1,0 +1,26 @@
+mutation setUserRegister($info: UserRegisterInput) {
+  userRegister(userRegisterInput: $info) {
+    userCode
+    userErrors {
+      code
+      message
+    }
+  }
+}
+
+mutation setUserLogin($loginInfo: UserLoginInput) {
+  userLogin(userLoginInput: $loginInfo) {
+    token
+    customer {
+      account
+      nickName
+      email
+      mobile
+    }
+    userErrors {
+      code
+      message
+      field
+    }
+  }
+}

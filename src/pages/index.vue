@@ -9,21 +9,14 @@
 </template>
 
 <script>
-import { queryShop } from "~/graphql/ql/foo.gql"
+import { getShopInfo } from "~/graphql/gql/home/home.gql"
 export default {
   name: "Index",
   async asyncData (ctx) {
-    let res
-    try {
-      res = await ctx.app.$apollo.query({
-        query: queryShop,
-        fetchPolicy: "no-cache"
-      })
-      console.log(res)
-    } catch (e) {
-      console.log(e)
-      res = []
-    }
+    const res = await ctx.app.$apollo.query({
+      query: getShopInfo,
+      fetchPolicy: "no-cache"
+    })
     return {
       articles: res
     }

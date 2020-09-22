@@ -1,0 +1,7 @@
+#import '../fragment/shop.gql'
+
+query getShopInfo{
+  shop{
+    ...shopBaseFragment
+  }
+}

@@ -1,0 +1,5 @@
+fragment userError on UserError {
+  fields
+  message
+  code
+}
