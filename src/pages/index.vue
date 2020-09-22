@@ -1,35 +1,10 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        brembo-front
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-        <nuxt-link to="/home" />
-      </div>
-      <ul>
-        <li v-for="item in articles" :key="item.article_id">
-          {{ item.article_id }}
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <img :src="articles.logo" alt="">
+      <h1>{{ articles.name }}</h1>
+    </ul>
+  </div>
   </div>
 </template>
 
