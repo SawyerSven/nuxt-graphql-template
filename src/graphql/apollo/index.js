@@ -9,6 +9,7 @@ import {
 import omitDeep from "omit-deep-lodash"
 import { find, get } from "lodash"
 import env from '@/config/env'
+import consola from 'consola'
 import loading from "./middleware/loading"
 
 const httpLink = new HttpLink({
@@ -58,8 +59,8 @@ const errorLink = onError(({ networkError, response }) => {
 
   if (errorMsg) {
     if (process.server) {
-      console.log('ERROR-------', errorMsg)
-      console.log('ERROR-INFO:------------', networkError)
+      consola.error('ERROR-------', errorMsg)
+      consola.error('ERROR-INFO:------------', networkError)
     }
     // Vue.prototype.$message.error(errorMsg)
   }
@@ -125,7 +126,7 @@ const apiMiddleWare = apiType => async (params, config = {}) => {
       loading.hide()
     }
     if (process.server) {
-      console.log("params: ", params, 'apiType', apiType, error)
+      consola.error("params: ", params, 'apiType', apiType, error)
     }
     throw new Error(error.message)
   }
