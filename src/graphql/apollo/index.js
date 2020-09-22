@@ -57,6 +57,10 @@ const errorLink = onError(({ networkError, response }) => {
   }
 
   if (errorMsg) {
+    if (process.server) {
+      console.log('ERROR-------', errorMsg)
+      console.log('ERROR-INFO:------------', networkError)
+    }
     // Vue.prototype.$message.error(errorMsg)
   }
 })
@@ -119,6 +123,9 @@ const apiMiddleWare = apiType => async (params, config = {}) => {
   } catch (error) {
     if (showLoading) {
       loading.hide()
+    }
+    if (process.server) {
+      console.log("params: ", params, 'apiType', apiType, error)
     }
     throw new Error(error.message)
   }
