@@ -1,25 +1,11 @@
 <template>
   <div class="container">
-    <a-form-model :model="form">
-      <a-form-model-item label="account" prop="account">
-        <a-input v-model="form.account" placeholder="account" />
-      </a-form-model-item>
-      <a-form-model-item label="password" prop="password">
-        <a-input v-model="form.password" placeholder="password" />
-      </a-form-model-item>
-      <a-form-model-item>
-        <a-button type="primary" @click="setLogin">
-          Submit
-        </a-button>
-      </a-form-model-item>
-    </a-form-model>
+    <Logo />
   </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import { getShopInfo } from "~/graphql/gql/home/home.gql"
 export default {
   meta: {
     needLogin: true
@@ -37,25 +23,8 @@ export default {
     }
   },
   mounted () {
-    this.getShopInfo()
   },
   methods: {
-    ...mapMutations({
-      setToken: 'user/setToken'
-    }),
-    async setLogin () {
-      const res = await this.$http.user.setLogin(this.form)
-      const { token, customer } = res
-      this.setToken(token)
-      console.log(customer)
-    },
-    async getShopInfo () {
-      const res = await this.$http.client.query({
-        query: getShopInfo,
-        fetchPolicy: "no-cache"
-      })
-      return res
-    }
   }
 }
 </script>
