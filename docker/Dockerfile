@@ -14,7 +14,7 @@ ADD package.json /opt/project
 
 ADD yarn.lock /opt/project
 
-ADD static /opt/project/static
+ADD src/static /opt/project/static
 
 RUN yarn config set registry https://registry.npm.taobao.org
 

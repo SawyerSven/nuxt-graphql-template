@@ -13,6 +13,7 @@
         </a-button>
       </a-form-model-item>
     </a-form-model>
+    <img src="static.jpg" width="40" height="40" alt="">
   </div>
   </div>
 </template>
