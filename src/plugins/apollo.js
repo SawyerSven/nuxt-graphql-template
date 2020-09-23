@@ -23,5 +23,5 @@ export default function ({ store, app, route }, inject) {
     client: apolloClient,
     user: new User(apolloClient)
   }
-  inject('http2', http)
+  inject('http', http)
 }
