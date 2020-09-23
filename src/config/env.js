@@ -12,6 +12,9 @@ switch (process.env.API_ENV) {
     break
 }
 
+export const TOKEN_COOKIE_NAME = "brembo-token"
+
 export default {
-  API_URL
+  API_URL,
+  TOKEN_COOKIE_NAME
 }

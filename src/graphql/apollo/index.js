@@ -1,5 +1,6 @@
 import { ApolloClient } from "apollo-client"
 import { HttpLink } from "apollo-link-http"
+import { setContext } from 'apollo-link-context'
 import fetch from 'node-fetch'
 import { onError } from "apollo-link-error"
 import {
@@ -12,12 +13,12 @@ import env from '@/config/env'
 import consola from 'consola'
 import loading from "./middleware/loading"
 
-const httpLink = new HttpLink({
+export const httpLink = new HttpLink({
   uri: env.API_URL,
   fetch
 })
 
-const errorLink = onError(({ networkError, response }) => {
+export const errorLink = onError(({ networkError, response }) => {
   if (networkError && networkError.statusCode === 401) {
     // eslint-disable-next-line
     console.log('123')
@@ -66,8 +67,47 @@ const errorLink = onError(({ networkError, response }) => {
   }
 })
 
-const apolloClientInstance = new ApolloClient({
-  link: errorLink.concat(httpLink),
+//
+export const createAuthLink = (options = {}) => {
+  return setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        "UNEX-CHANNEL-CODE": 100,
+        ...options
+      }
+    }
+  })
+}
+export const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      // "UNEX-TENANT-CODE": 1,
+      "UNEX-CHANNEL-CODE": 100
+      // "UNEX-STORE-CODE": 1
+    }
+  }
+})
+// 这部分是用于Plugins目录下生成ApolloClient实例使用的
+export const createApolloClientInstance = function (link) {
+  return new ApolloClient({
+    link,
+    cache: new InMemoryCache(),
+    connectToDevTools: true,
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: "network-only"
+      },
+      query: {
+        fetchPolicy: "network-only"
+      }
+    }
+  })
+}
+
+export const apolloClientInstance = new ApolloClient({
+  link: errorLink.concat(authLink).concat(httpLink),
   cache: new InMemoryCache(),
 
   connectToDevTools: true,
@@ -82,7 +122,7 @@ const apolloClientInstance = new ApolloClient({
   }
 })
 
-const handleUserError = (response) => {
+export const handleUserError = (response) => {
   const userErrors = get(response, "userErrors", [])
   if (userErrors && userErrors.length) {
     // Vue.prototype.$message.error(userErrors[0].message)
@@ -90,9 +130,9 @@ const handleUserError = (response) => {
   }
 }
 
-const omitTypename = response => omitDeep(response, "__typename")
+export const omitTypename = response => omitDeep(response, "__typename")
 
-const formatResponse = (graphql, response) => {
+export const formatResponse = (graphql, response) => {
   const data = omitTypename(response).data
   // const data = response.data
   if (data === null) {
@@ -110,13 +150,13 @@ const formatResponse = (graphql, response) => {
   return selections.length === 1 ? data[selections[0].name.value] : data
 }
 
-const apiMiddleWare = apiType => async (params, config = {}) => {
+export const apiMiddleWare = (apiType, instance) => async (params, config = {}) => {
   const { showLoading } = config
   if (showLoading) {
     loading.show()
   }
   try {
-    const response = await apolloClientInstance[apiType](params)
+    const response = await instance[apiType](params)
     if (showLoading) {
       loading.hide()
     }
@@ -134,10 +174,10 @@ const apiMiddleWare = apiType => async (params, config = {}) => {
 
 export const apolloClient = {
   query () {
-    return apiMiddleWare("query")(...arguments)
+    return apiMiddleWare("query", apolloClientInstance)(...arguments)
   }, // eslint-disable-line
   mutate () {
-    return apiMiddleWare("mutate")(...arguments)
+    return apiMiddleWare("mutate", apolloClientInstance)(...arguments)
   } // eslint-disable-line
 }
 

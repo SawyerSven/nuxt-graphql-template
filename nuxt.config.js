@@ -33,7 +33,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ["ant-design-vue/dist/antd.css"],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -41,7 +41,9 @@ export default {
   plugins: [
     "~/plugins/vue-inject.js", // 注入vue实例的全局属性
     "~/plugins/ctx-inject.js", // 注入ctx-asyncData使用的全局属性
-    "~/plugins/combined-inject.js" // 同时注入ctx-asyncData和Vue实例的全局属性
+    "~/plugins/combined-inject.js", // 同时注入ctx-asyncData和Vue实例的全局属性
+    "~/plugins/antd-ui.js",
+    "~/plugins/apollo.js"
   ],
   /*
    ** Auto import components
@@ -59,13 +61,17 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["nuxt-ssr-cache", "@nuxtjs/proxy"],
+  modules: [
+    "nuxt-ssr-cache",
+    "@nuxtjs/proxy",
+    ['cookie-universal-nuxt']
+  ],
 
   styleResources: {
     less: ["./src/common/less/index.less"]
   },
 
-  serverMiddleware: ["~/middleware/health.js"],
+  serverMiddleware: [],
   cache: {
     // if you're serving multiple host names (with differing
     // results) from the same server, set this option to true.
@@ -103,9 +109,7 @@ export default {
       ttl: 60
     }
   },
-  proxy: [
-    'http://brembo-backend-uat.cloud.bz/graphql'
-  ],
+  proxy: ["http://brembo-backend-uat.cloud.bz/graphql"],
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
@@ -122,6 +126,7 @@ export default {
         test: /(\.graphql)|(\.gql)$/,
         use: ["graphql-tag/loader"]
       })
+      config.resolve.extensions.push(".gql")
     }
   }
 }
