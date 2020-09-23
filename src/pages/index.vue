@@ -13,7 +13,6 @@
         </a-button>
       </a-form-model-item>
     </a-form-model>
-    <img src="static.jpg" width="40" height="40" alt="">
   </div>
   </div>
 </template>
@@ -45,13 +44,13 @@ export default {
       setToken: 'user/setToken'
     }),
     async setLogin () {
-      const res = await this.$http2.user.setLogin(this.form)
+      const res = await this.$http.user.setLogin(this.form)
       const { token, customer } = res
       this.setToken(token)
       console.log(customer)
     },
     async getShopInfo () {
-      const res = await this.$http2.client.query({
+      const res = await this.$http.client.query({
         query: getShopInfo,
         fetchPolicy: "no-cache"
       })
